@@ -1,0 +1,18 @@
+<div class="section trello">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" ng-if="!vm.gui.trello.ok">
+                <jhas-trello-connect-edit success-callback="vm.data.trelloConnectUpdated"></jhas-trello-connect-edit>
+            </div>
+            <div class="col-md-12" ng-if="vm.gui.trello.ok">
+
+                <div class="text-center">
+                    <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/eeffef371f07cfe5396093f998424c6c/home-taco.png">
+
+                    <h1>User is connected to Trello</h1>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,7 +9,7 @@
         /*
          * Our reusable cross app code modules
          */
-        
+        'blocks.centralData',
         /*
          * 3rd Party modules
          */

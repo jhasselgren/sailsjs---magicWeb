@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-    createToken: function (req, res) {
+    createToken: function createTrelloToken (req, res) {
 
         var username = req.param('username');
         var token = req.param('token');
@@ -20,17 +20,16 @@ module.exports = {
             exec(function getUsersToken(err, data) {
                 if (err) return res.negotiate(err);
 
-                if (!data) creteToken(trello);
+                if (!data) saveToken(trello);
 
                 updateToken(trello);
 
             });
 
-        function createToken(trello) {
-            Trello.create({ username: trello.username }, trello)
+        function saveToken(trello) {
+            Trello.create(trello)
                 .exec(function saveTrelloToken(err, data) {
                     if (err) return res.negotiate(err);
-                    if (!data) return res.notFound();
 
                     console.log("Created Trello Token");
                     console.log(JSON.stringify(data));
@@ -54,13 +53,32 @@ module.exports = {
 
 
     },
+    
+    getTrelloConnection: function getTrelloConnection(req, res){
+        
+        var reqUsername = req.param('username');
+        
+        Trello.findOne({ username: reqUsername })
+            .exec(function fetchTrelloConnection(err, trelloConnection) {
+                if (err) return res.negotiate(err);
+                if (!trelloConnection){
+                    trelloConnection = {
+                        username: '',
+                        token: ''
+                    }
+                }
 
-    saveCard: function (req, res) {
+                console.log(JSON.stringify(trelloConnection));
+                return res.send(trelloConnection);
+            });
+    },
+
+    saveCard: function updateTrelloToken(req, res) {
         //f2048869d89da6c518cd2e305f617a7734e08c3ff40815ff7f81f3de03b5617e
         
-  
+        var reqUsername = req.param('username');
         
-        Trello.findOne({ username: 'jhas' })
+        Trello.findOne({ username: reqUsername })
             .exec(function getTrelloToken(err, trelloToken) {
                 if (err) return res.negotiate(err);
                 if (!trelloToken) return res.notFound();
@@ -94,7 +112,10 @@ module.exports = {
     },
 
     getBoards: function (req, res) {
-        Trello.findOne({ username: 'jhas' })
+        
+        var reqUsername = req.param('username');
+        
+        Trello.findOne({ username: reqUsername })
             .exec(function getTrelloToken(err, trelloToken) {
                 if (err) return res.negotiate(err);
                 if (!trelloToken) return res.notFound();
@@ -120,7 +141,9 @@ module.exports = {
     },
 
     getLists: function (req, res) {
-        Trello.findOne({ username: 'jhas' })
+        var reqUsername = req.param('username');
+        
+        Trello.findOne({ username: reqUsername })
             .exec(function getTrelloToken(err, trelloToken) {
                 if (err) return res.negotiate(err);
                 if (!trelloToken) return res.notFound();

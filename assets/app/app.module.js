@@ -15,11 +15,15 @@
          * but this is easier to maintain.
          */ 
         'app.core',
+        
+        'app.template',
 
         /*
          * Feature areas
          */
-        'app.main'
+        'app.main',
+        'app.trello',
+        'app.leankit',
     ]);
 
 })();

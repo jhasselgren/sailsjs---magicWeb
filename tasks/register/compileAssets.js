@@ -4,7 +4,8 @@ module.exports = function (grunt) {
         'wiredep',
 		'jst:dev',
 		'less:dev',
+        'ngtemplates',
 		'copy:dev',
-		'coffee:dev'
+		'coffee:dev',
 	]);
 };

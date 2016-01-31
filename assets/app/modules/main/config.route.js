@@ -14,11 +14,23 @@
         $stateProvider
             .state('home', {
                 url: '/home',
-                templateUrl: '/app/modules/main/main.html',
-                controller: 'MainController',
-                controllerAs: 'vm'
+                views: {
+                    '': {
+                        templateUrl: 'main/main.tpl.html'
+                    },
+                    'trelloConnect@home': {
+                        templateUrl: 'trello/connect/trello.connect.tpl.html',
+                        controller: 'TrelloConnectController',
+                        controllerAs: 'vm'
+                    },
+                    'leanKitConnect@home': {
+                        templateUrl: 'leankit/connect/leankit.connect.tpl.html',
+                        controller: 'LeanKitConnectController',
+                        controllerAs: 'vm'
+                    }
+
+                }
+
             });
     }
-
-
 })();
