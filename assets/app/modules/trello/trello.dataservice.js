@@ -7,20 +7,29 @@
 
     TrelloDataService.$inject = ['$http'];
     function TrelloDataService($http) {
-        this.getTrelloConnection = getTrelloConnection;
+        this.validateTrelloConnection = validateTrelloConnection;
         this.saveTrelloConnection = saveTrelloConnection;
         ////////////////
 
-        function getTrelloConnection(username) { 
+        function validateTrelloConnection(username) { 
             console.log("Loading trello token");
-            var promise = $http.get('api/trello/'+username+'/token');
-            return promise;
+            return $http.get('api/'+username+'/connection/trello/validate')
+                .then(validateTrelloConnectionCompleted);
+            
+            function validateTrelloConnectionCompleted(body){
+                return body.data;
+            }
         }
         
         function saveTrelloConnection(trelloConnect) { 
             console.log("saving trello token");
-            var promise = $http.put('api/trello/token', trelloConnect);
-            return promise;
+            return $http.put('api/'+trelloConnect.username+'/connection/trello', trelloConnect)
+                .then(saveTrelloConnectionCompleted);
+            
+            
+            function saveTrelloConnectionCompleted(body){
+                return body.data;
+            }
         }
     }
 })();

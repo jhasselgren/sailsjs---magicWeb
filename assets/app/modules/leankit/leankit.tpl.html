@@ -1,0 +1,17 @@
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">LeanKit Cards</h1>
+                <p class="text-center lead">A subtitle.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div ng-repeat="card in vm.data.cards">
+                <div class="clearfix" ng-if="$index % 4 == 0"></div>
+                <jhas-leankit-card-show card="card"></jhas-leankit-card-show>
+            </div>
+        </div>
+    </div>
+</div>

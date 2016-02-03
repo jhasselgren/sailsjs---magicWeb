@@ -1,3 +1,4 @@
+/* global LeanKitConnection */
 module.exports = {
 
     createConnection: function (req, res) {
@@ -14,7 +15,7 @@ module.exports = {
         
         AES256.encrypt({
             value: leankitPassword,
-            secret: 'a secure phrase or password',
+            secret: '123456',
             buffer: false,
         }).exec({
             // An unexpected error occurred.

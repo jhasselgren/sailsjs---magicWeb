@@ -24,18 +24,13 @@
 
         function activate() {
             CentralDataService.addCentralDataListener(trelloConnectStatusUpdated);
-            TrelloDataService.getTrelloConnection('jhas')
+            TrelloDataService.validateTrelloConnection('jhas')
                 .then(trelloConnectionLoaded, handleError);
 
         }
 
-        function trelloConnectionLoaded(response) {
-            if (response.token != '') {
-                CentralDataService.setTrelloConnectionStatus(true);
-            }
-            else{
-                CentralDataService.setTrelloConnectionStatus(false);
-            }
+        function trelloConnectionLoaded(result) {
+            CentralDataService.setTrelloConnectionStatus(result);
         }
 
         function trelloConnectUpdated() {

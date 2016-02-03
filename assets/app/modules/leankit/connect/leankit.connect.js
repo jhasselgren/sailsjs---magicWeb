@@ -20,6 +20,8 @@
                 ok: false
             }
         }
+        
+        vm.leankitConnectUpdated = leankitConnectUpdated;
 
         activate();
 
@@ -32,8 +34,8 @@
             
         }
         
-        function validateLeanKitConnectionResult(response){
-            CentralDataService.setLeanKitConnectionStatus(response.data.validated);
+        function validateLeanKitConnectionResult(result){
+            CentralDataService.setLeanKitConnectionStatus(result.validated);
         }
         
         function leankitConnectUpdated() {

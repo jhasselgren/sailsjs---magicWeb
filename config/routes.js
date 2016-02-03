@@ -34,22 +34,13 @@ module.exports.routes = {
 
   'GET /' : 'PageController.showHomePage',
   
-  'POST /api/leankit' : 'LeanKitController.getData',
-  
-  'PUT /api/trello/token' : 'TrelloController.createToken',
-  
-  'GET /api/trello/:username/token' : 'TrelloController.getTrelloConnection',
-  
-  'PUT /api/trello/:username/' : 'TrelloController.saveCard',
-  
-  'GET /api/trello/:username/boards' : 'TrelloController.getBoards',
-  
-  'GET /api/trello/:username/:boardId/lists' : 'TrelloController.getLists',
+  'PUT /api/:username/connection/trello' : 'TrelloConnectionController.saveTrelloConnection',
+  'GET /api/:username/connection/trello/validate' : 'TrelloConnectionController.validateTrelloConnection',
   
   'PUT /api/:username/connection/leankit' : 'LeanKitConnectionController.createConnection',
-  
   'GET /api/:username/connection/leankit/validate' : 'LeanKitConnectionController.validateLeanKitConnection',
   
+  'GET /api/:username/leankit/cards' : 'LeanKitController.getUsersCard',
 
   /***************************************************************************
   *                                                                          *

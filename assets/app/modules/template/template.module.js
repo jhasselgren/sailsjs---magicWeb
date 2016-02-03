@@ -1,6 +1,17 @@
 angular.module('app.template', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('leankit/card/leankit.card.tpl.html',
+    "<div class=\"col-sm-4 col-md-3 leankit-card-show\">\n" +
+    "    <div class=\"panel panel-default\">\n" +
+    "        <div class=\"body\">\n" +
+    "            <p ng-bind-html=\"vm.card.title\"></p>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('leankit/connect/leankit.connect.edit.tpl.html',
     "<div class=\"section\">\n" +
     "    <div class=\"container text-center\">\n" +
@@ -49,7 +60,7 @@ angular.module('app.template', []).run(['$templateCache', function($templateCach
     "    <div class=\"container\">\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"col-md-12\" ng-if=\"!vm.gui.leankit.ok\">\n" +
-    "                <jhas-leankit-connect-edit success-callback=\"vm.data.leankitConnectUpdated\"></jhas-leankit-connect-edit>\n" +
+    "                <jhas-leankit-connect-edit success-callback=\"vm.leankitConnectUpdated\"></jhas-leankit-connect-edit>\n" +
     "            </div>\n" +
     "            <div class=\"col-md-12\" ng-if=\"vm.gui.leankit.ok\">\n" +
     "                <div class=\"text-center\">\n" +
@@ -62,47 +73,31 @@ angular.module('app.template', []).run(['$templateCache', function($templateCach
   );
 
 
-  $templateCache.put('main/main.tpl.html',
-    "<div ui-view=\"trelloConnect\"></div>\n" +
-    "<div ui-view=\"leanKitConnect\"></div>\n" +
+  $templateCache.put('leankit/leankit.tpl.html',
     "<div class=\"section\">\n" +
     "    <div class=\"container\">\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"col-md-12\">\n" +
-    "                <h1 class=\"text-center\">Gallery</h1>\n" +
+    "                <h1 class=\"text-center\">LeanKit Cards</h1>\n" +
     "                <p class=\"text-center lead\">A subtitle.</p>\n" +
     "            </div>\n" +
     "        </div>\n" +
+    "        \n" +
     "        <div class=\"row\">\n" +
-    "            <div class=\"col-md-3\">\n" +
-    "                <a><img src=\"http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png\" class=\"img-responsive\"></a>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-md-3\">\n" +
-    "                <a><img src=\"http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png\" class=\"img-responsive\"></a>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-md-3\">\n" +
-    "                <a><img src=\"http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png\" class=\"img-responsive\"></a>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-md-3\">\n" +
-    "                <a><img src=\"http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png\" class=\"img-responsive\"></a>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"col-md-3\">\n" +
-    "                <a><img src=\"http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png\" class=\"img-responsive\"></a>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-md-3\">\n" +
-    "                <a><img src=\"http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png\" class=\"img-responsive\"></a>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-md-3\">\n" +
-    "                <a><img src=\"http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png\" class=\"img-responsive\"></a>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-md-3\">\n" +
-    "                <a><img src=\"http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png\" class=\"img-responsive\"></a>\n" +
+    "            <div ng-repeat=\"card in vm.data.cards\">\n" +
+    "                <div class=\"clearfix\" ng-if=\"$index % 4 == 0\"></div>\n" +
+    "                <jhas-leankit-card-show card=\"card\"></jhas-leankit-card-show>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>"
+  );
+
+
+  $templateCache.put('main/main.tpl.html',
+    "<div ui-view=\"trelloConnect\"></div>\n" +
+    "<div ui-view=\"leanKitConnect\"></div>\n" +
+    "<div ui-view=\"leanKitCards\"></div>"
   );
 
 

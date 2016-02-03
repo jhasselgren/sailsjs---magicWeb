@@ -27,6 +27,11 @@
                         templateUrl: 'leankit/connect/leankit.connect.tpl.html',
                         controller: 'LeanKitConnectController',
                         controllerAs: 'vm'
+                    },
+                    'leanKitCards@home': {
+                        templateUrl: 'leankit/leankit.tpl.html',
+                        controller: 'LeanKitController',
+                        controllerAs: 'vm'
                     }
 
                 }
